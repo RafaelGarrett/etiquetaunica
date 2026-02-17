@@ -20,4 +20,18 @@ class Product extends Model
         'category',
         'status' => 'active',
     ];
+
+    public function scopeSearch($query, $request)
+    {
+
+        $terms = $request->only('name', 'description');
+
+        foreach ($terms as $name => $value) {
+            if ($value) { 
+                $query->where($name, 'LIKE', '%' . $value . '%');
+            }
+        }
+
+        return $query;
+    }
 }
