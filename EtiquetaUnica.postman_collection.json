@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "936b87b9-9280-439a-ba91-cb8faf6dc5a4",
+		"name": "EtiquetaUnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12222502"
+	},
+	"item": [
+		{
+			"name": "Novo Produto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"CELSAMA11ELE\",\n    \"name\": \"celular 2\",\n    \"description\": \"A11\",\n    \"price\": 910,\n    \"category\": \"eletrônico\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"CELSAMA11ELE\",\n    \"name\": \"celular 2 edit\",\n    \"description\": \"A11\",\n    \"price\": 910,\n    \"category\": \"eletrônico\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Produto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products?page=1&name=celular&status=active",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "celular"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Produto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
