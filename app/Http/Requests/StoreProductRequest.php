@@ -25,7 +25,7 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sku' => ['required', Rule::unique('products', 'sku')->ignore($this->product->id)],
+            'sku' => ['required', Rule::unique('products', 'sku')->ignore($this->product?->id)],
             'name' => 'required|string|max:255|min:3',
             'description' => 'nullable|string',
             'price' => 'numeric|min:0',
