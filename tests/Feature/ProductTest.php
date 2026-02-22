@@ -3,27 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
-    use RefreshDatabase;
-    
-    /**
-     * A basic feature test example.
-     */
-    public function test_index(): void
-    {
-        $response = $this->get('api/products');
 
-        $response->assertStatus(200);
-    }
-
-    /**
-     * Test that an valid post can be created.
-     */
     public function test_store(): void
     {
         $product = new Product();
@@ -35,6 +19,29 @@ class ProductTest extends TestCase
         $product->status = 'active';
         $response = $this->post('api/products', $product->toArray());
         $response->assertStatus(201);
+    }
+
+    public function test_show(): void
+    {
+        $product = Product::query()->inRandomOrder()->first();
+        $response = $this->get("api/products?page=2&name=celular&status=active");
+        $response->assertStatus(200);
+    }
+
+    public function test_update(): void
+    {
+        $product = Product::query()->inRandomOrder()->first();
+        $product->name = fake('pt_BR')->name();
+        $product->description = fake('pt_BR')->text(255);
+        $response = $this->put("api/products/{$product->id}", $product->toArray());
+        $response->assertStatus(200);
+    }
+
+    public function test_destroy(): void
+    {
+        $product = Product::query()->inRandomOrder()->first();
+        $response = $this->delete("api/products/{$product->id}");
+        $response->assertStatus(204);
     }
 
 }
